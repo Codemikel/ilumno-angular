@@ -1,0 +1,35 @@
+<div *ngIf="data && data.length > 0">
+  <h1>Detalles de los Usuarios</h1>
+  <label for="itemsPerPage">Elementos por página:</label>
+  <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange(itemsPerPage)">
+    <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+  </select>
+  <input type="text" [(ngModel)]="filterValue" (input)="applyFilter()" placeholder="Filtrar por nombre">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Documento</th>
+        <th>Correo Electrónico</th>
+        <th>Teléfono</th>
+        <th>País</th>
+        <th>Tipo de Documento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredData">
+        <td>{{ user.name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.document }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.country }}</td>
+        <td>{{ user.document_type }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>  
+<div *ngIf="!data">
+  <p>No se encontraron datos.</p>
+</div>
